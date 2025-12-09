@@ -1,0 +1,4 @@
+dotenv==0.9.9
+azure-identity==1.25.1
+uvicorn==0.38.0
+azure-ai-projects==1.0.0
