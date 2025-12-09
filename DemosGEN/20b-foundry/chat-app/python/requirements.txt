@@ -1,0 +1,2 @@
+python-dotenv==1.2.1
+azure.ai.projects==1.0.0
