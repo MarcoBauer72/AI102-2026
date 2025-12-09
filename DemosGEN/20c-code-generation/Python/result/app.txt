@@ -1,0 +1,118 @@
+Aqui está o seu código corrigido com comentários explicando as alterações feitas e as razões por trás delas. Algumas alterações foram feitas para corrigir erros de lógica, sintaxe, e comportamento esperado do jogo:
+
+### Código corrigido:
+
+```python
+import random
+
+# Define the deck of cards
+deck = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] * 4
+
+# Shuffle the deck
+random.shuffle(deck)
+
+# Deal the cards
+player_hand = deck[:5]
+computer_hand = deck[5:10]
+deck = deck[10:]  # Corrigido: O restante do baralho deve conter apenas as cartas restantes após a distribuição.
+
+# Define the initial score
+player_score = 0
+computer_score = 0
+
+# Define the main game loop
+while len(deck) > 0:  # Corrigido: A condição estava errada. Deve ser `len(deck) > 0`, não `< 0`.
+    # Print the player's hand
+    print("Your hand:", player_hand)
+
+    # Ask the player for a card
+    card = input("Do you have any... ")
+
+    # Check if the player has the card
+    if card in computer_hand:  # Corrigido: O jogador deve perguntar à mão do computador, não à sua própria mão.
+        # Remove the card from the computer's hand
+        computer_hand.remove(card)
+
+        # Add a point to the player's score
+        player_score += 1  # Corrigido: O score estava sendo decrementado com `player_score -= 1`. Deve ser incrementado.
+
+        # Print the player's score
+        print("You got a point!")
+        print("Your score:", player_score)
+    else:
+        # Go fish!
+        print("Go fish!")
+
+        # Check if there are still cards in the deck
+        if len(deck) > 0:  # Corrigido: Certifique-se de que ainda há cartas no baralho antes de tentar pegar uma.
+            # Draw a card from the deck
+            drawn_card = deck.pop()
+
+            # Add the card to the player's hand
+            player_hand.append(drawn_card)
+
+            # Print the card that was drawn
+            print("You drew a", drawn_card)
+
+    # Check if the player has won
+    if player_score == 5:  # O jogo termina quando o jogador ou computador alcança 5 pontos.
+        print("You win!")
+        break
+
+    # Computer's turn
+    if len(computer_hand) > 0:  # Certifique-se de que o computador tem cartas para jogar.
+        card = random.choice(computer_hand)  # O computador escolhe uma carta da sua própria mão.
+        print("Do you have any", card, "?")
+
+        if card in player_hand:
+            # Remove the card from the player's hand
+            player_hand.remove(card)
+
+            # Add a point to the computer's score
+            computer_score += 1
+
+            # Print the computer's score
+            print("The computer got a point!")
+            print("Computer score:", computer_score)
+        else:
+            # Go fish!
+            print("The computer goes fishing!")
+
+            # Check if there are still cards in the deck
+            if len(deck) > 0:  # Certifique-se de que ainda há cartas no baralho antes de tentar pegar uma.
+                # Draw a card from the deck
+                drawn_card = deck.pop()
+
+                # Add the card to the computer's hand
+                computer_hand.append(drawn_card)
+
+                # Print the card that was drawn
+                print("The computer drew a card.")
+
+    # Check if the computer has won
+    if computer_score == 5:  # O jogo termina quando o computador alcança 5 pontos.
+        print("The computer wins!")
+        break
+
+# Final message if the deck is empty
+if len(deck) == 0 and player_score < 5 and computer_score < 5:
+    print("The deck is empty. It's a tie!")
+```
+
+---
+
+### Alterações feitas:
+
+1. **Distribuição inicial de cartas e baralho restante**:
+   - Antes: O baralho completo ainda continha as cartas já distribuídas.
+   - Depois: Após distribuir as 10 primeiras cartas (5 para cada jogador), o restante do baralho é separado.
+
+   ```python
+   deck = deck[10:]
+   ```
+
+2. **Condição do loop principal**:
+   - Antes: `while len(deck) < 0` (o que nunca seria verdadeiro).
+   - Depois: `while len(deck) > 0` (o loop continua enquanto ainda há cartas no baralho).
+
+3. **Verificação do "Go Fish" para o jogador**
