@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = sdk_client
+build_property.ProjectDir = D:\AI102GREEN\DemosCOG-GREEN\01-getting-started\C-Sharp\sdk-client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
