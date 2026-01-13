@@ -1,2 +1,2 @@
-dotenv
-
+azure-cognitiveservices-vision-customvision==3.1.1
+matplotlib==3.10.17
