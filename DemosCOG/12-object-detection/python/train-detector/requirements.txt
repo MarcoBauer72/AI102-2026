@@ -1,1 +1,1 @@
-dotenv
+azure-cognitiveservices-vision-customvision==3.1.1
