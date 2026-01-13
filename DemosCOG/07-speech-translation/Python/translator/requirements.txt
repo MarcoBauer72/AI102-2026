@@ -1,2 +1,2 @@
-python-dotenv
-azure.core
+python-dotenv=1.2.1
+azure.core==1.36.0
